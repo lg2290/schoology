@@ -14,4 +14,12 @@ public class EntrypointResponse<T> {
     public static final <T> EntrypointResponse<T> of(T responseData) {
         return new EntrypointResponse<>(responseData);
     }
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public T getResponseData() {
+        return responseData;
+    }
 }

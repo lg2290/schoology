@@ -60,7 +60,7 @@ public class GetNamesControllerTest {
                 .perform(MockMvcRequestBuilders.get(URI))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.responseData", Matchers.is(objectMapper.writeValueAsString(expectedNames.getNames()))))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.responseData", Matchers.containsInAnyOrder(expectedNames.getNames().toArray())))
                 .andReturn();
 
         Mockito

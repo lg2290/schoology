@@ -4,6 +4,7 @@ import com.schoology.test.autocomplete.core.entity.User;
 import com.schoology.test.autocomplete.core.gateway.GetUsersGateway;
 import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
 import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Component
 public class GetNamesUseCase implements UseCase<GetNameResult, GetNamesArgument> {
 
     private final GetUsersGateway getUsersGateway;
