@@ -52,7 +52,7 @@ public class GetNamesUseCaseTest {
 
     @BeforeEach
     public void setup() {
-        useCase = new GetNamesUseCase();
+        useCase = new GetNamesUseCase(getUsersGateway);
     }
 
     @Test

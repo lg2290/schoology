@@ -10,4 +10,8 @@ public class GetNamesArgument {
     public static GetNamesArgument of(String nameFilter) {
         return new GetNamesArgument(nameFilter);
     }
+
+    public String getNameFilter() {
+        return nameFilter;
+    }
 }
