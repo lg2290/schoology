@@ -33,7 +33,7 @@ public class GetNamesUseCase implements UseCase<GetNameResult, GetNamesArgument>
     private Stream<String> getNames() {
         List<User> users = getUsersGateway.get();
 
-        if(noUserFound(users)) {
+        if (noUserFound(users)) {
             return Stream.empty();
         }
 
@@ -47,12 +47,12 @@ public class GetNamesUseCase implements UseCase<GetNameResult, GetNamesArgument>
     }
 
     private Stream<String> filterNames(GetNamesArgument getNamesArgument, Stream<String> names) {
-        if(hasFilter(getNamesArgument)) {
+        if (hasFilter(getNamesArgument)) {
             String nameFilter = getNamesArgument.getNameFilter().toLowerCase().trim();
 
             return names.filter(n ->
-                Objects.nonNull(n) &&
-                        n.toLowerCase().contains(nameFilter)
+                    Objects.nonNull(n) &&
+                            n.toLowerCase().contains(nameFilter)
             );
         }
 

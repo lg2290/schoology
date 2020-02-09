@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class TestFixture {
-    private TestFixture() {}
+    private TestFixture() {
+    }
 
     public static final GetNameResult getNamesResult() {
         return GetNameResult.of(getNames());

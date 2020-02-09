@@ -5,13 +5,11 @@ import com.schoology.test.autocomplete.core.usecase.UseCase;
 import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
 import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
 import com.schoology.test.autocomplete.entrypoint.controller.v1.GetNamesController;
-import com.schoology.test.autocomplete.entrypoint.controller.v1.response.EntrypointResponse;
 import com.schoology.test.autocomplete.helper.TestConstants;
 import com.schoology.test.autocomplete.helper.TestFixture;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,12 +22,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @Tag(TestConstants.TEST_TAG_INTEGRATION)
@@ -37,6 +32,8 @@ import java.util.List;
 public class GetNamesControllerTest {
 
     private static final String URI = "/v1/users/names";
+
+    private static final String NAME_FILTER_PARAM_KEY = "nameFilter";
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -81,8 +78,6 @@ public class GetNamesControllerTest {
     private MockHttpServletRequestBuilder getRequestBuilder() {
         return MockMvcRequestBuilders.get(URI);
     }
-
-    private static final String NAME_FILTER_PARAM_KEY = "nameFilter";
 
     private MockHttpServletRequestBuilder getRequestBuilder(String nameFilter) {
         return getRequestBuilder().param(NAME_FILTER_PARAM_KEY, nameFilter);

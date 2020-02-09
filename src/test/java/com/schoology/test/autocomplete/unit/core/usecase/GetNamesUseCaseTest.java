@@ -1,11 +1,11 @@
 package com.schoology.test.autocomplete.unit.core.usecase;
 
 import com.schoology.test.autocomplete.core.entity.User;
-import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
-import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
 import com.schoology.test.autocomplete.core.gateway.GetUsersGateway;
 import com.schoology.test.autocomplete.core.usecase.GetNamesUseCase;
 import com.schoology.test.autocomplete.core.usecase.UseCase;
+import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
+import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
 import com.schoology.test.autocomplete.helper.TestConstants;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Assertions;
@@ -41,7 +41,7 @@ public class GetNamesUseCaseTest {
             User.of(NAME_1),
             User.of(NAME_2),
             User.of(NAME_3)
-        ).collect(Collectors.toList());
+    ).collect(Collectors.toList());
 
     private static final List<String> ALL_NAMES = Stream.of(NAME_1, NAME_2, NAME_3).collect(Collectors.toList());
 
