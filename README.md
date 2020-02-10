@@ -25,7 +25,7 @@ gradlew.abt bootRun
 
 #### Via Docker
 ```bash
-docker build . autocomplete:1.0
+docker build . -t autocomplete:1.0
 
 docker run -p 8080:8080 autocomplete:1.0
 ```
