@@ -20,8 +20,9 @@ public class GetNamesController {
         this.getNamesUseCase = getNamesUseCase;
     }
 
-    @GetMapping(ApiVersion.V1_PATH + "users/names")
-    public ResponseEntity<EntrypointResponse<List<String>>> getNames(@RequestParam(name = "nameFilter", required = false, defaultValue = "") String nameFilter) {
+    @GetMapping(ApiConstants.GET_NAMES_ENDPOINT_PATH)
+    public ResponseEntity<EntrypointResponse<List<String>>> getNames(
+            @RequestParam(name = ApiConstants.GET_NAMES_FILTER_PARAMETER_KEY, required = false, defaultValue = "") String nameFilter) {
         GetNameResult result = getNamesUseCase.execute(GetNamesArgument.of(nameFilter));
 
         return ResponseEntity.ok(EntrypointResponse.of(result.getNames()));
