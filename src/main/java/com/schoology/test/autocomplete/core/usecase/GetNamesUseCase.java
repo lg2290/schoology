@@ -27,7 +27,7 @@ public class GetNamesUseCase implements UseCase<GetNameResult, GetNamesArgument>
 
         Stream<String> filteredNames = filterNames(getNamesArgument, names);
 
-        return GetNameResult.of(filteredNames.collect(Collectors.toList()));
+        return GetNameResult.of(filteredNames.sorted().collect(Collectors.toList()));
     }
 
     private Stream<String> getNames() {

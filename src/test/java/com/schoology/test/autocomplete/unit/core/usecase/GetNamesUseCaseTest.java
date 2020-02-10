@@ -8,6 +8,8 @@ import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
 import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
 import com.schoology.test.autocomplete.helper.TestConstants;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -173,7 +175,7 @@ public class GetNamesUseCaseTest {
                 () -> Assertions.assertNotNull(result),
                 () -> Assertions.assertNotNull(result.getNames()),
                 () -> Assertions.assertFalse(result.getNames().isEmpty()),
-                () -> Assertions.assertEquals(expectedNames, result.getNames())
+                () -> MatcherAssert.assertThat(result.getNames(), Matchers.contains(expectedNames.toArray()))
         );
 
         Mockito.verify(getUsersGateway).get();
