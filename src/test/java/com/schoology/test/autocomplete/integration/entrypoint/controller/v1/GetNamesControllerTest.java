@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.schoology.test.autocomplete.core.usecase.UseCase;
 import com.schoology.test.autocomplete.core.usecase.argument.GetNamesArgument;
 import com.schoology.test.autocomplete.core.usecase.result.GetNameResult;
+import com.schoology.test.autocomplete.entrypoint.controller.v1.ApiConstants;
 import com.schoology.test.autocomplete.entrypoint.controller.v1.GetNamesController;
 import com.schoology.test.autocomplete.helper.TestConstants;
 import com.schoology.test.autocomplete.helper.TestFixture;
@@ -31,13 +32,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @WebMvcTest(GetNamesController.class)
 public class GetNamesControllerTest {
 
-    private static final String URI = "/v1/users/names";
-
-    private static final String NAME_FILTER_PARAM_KEY = "nameFilter";
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -50,40 +44,40 @@ public class GetNamesControllerTest {
     @Test
     public void whenNoFilterIsPassed_thenCallUseCaseAndSuccessReturnNames() throws Exception {
         MockHttpServletRequestBuilder requestBuilder = getRequestBuilder();
-        assertSuccessCall(requestBuilder, null);
+        assertSuccessCall(requestBuilder);
 
         verifyArgument("");
     }
 
     @Test
-    public void whenNoFilterIsEmpty_thenCallUseCaseAndSuccessReturnNames() throws Exception {
+    public void whenNameFilterIsEmpty_thenCallUseCaseAndSuccessReturnNames() throws Exception {
         String nameFilter = "";
         MockHttpServletRequestBuilder requestBuilder = getRequestBuilder(nameFilter);
 
-        assertSuccessCall(requestBuilder, nameFilter);
+        assertSuccessCall(requestBuilder);
 
         verifyArgument(nameFilter);
     }
 
     @Test
-    public void whenNoFilterHasValue_thenCallUseCaseAndSuccessReturnNames() throws Exception {
+    public void whenNameFilterHasValue_thenCallUseCaseAndSuccessReturnNames() throws Exception {
         String nameFilter = RandomString.make();
         MockHttpServletRequestBuilder requestBuilder = getRequestBuilder(nameFilter);
 
-        assertSuccessCall(requestBuilder, nameFilter);
+        assertSuccessCall(requestBuilder);
 
         verifyArgument(nameFilter);
     }
 
     private MockHttpServletRequestBuilder getRequestBuilder() {
-        return MockMvcRequestBuilders.get(URI);
+        return MockMvcRequestBuilders.get(ApiConstants.GET_NAMES_ENDPOINT_PATH);
     }
 
     private MockHttpServletRequestBuilder getRequestBuilder(String nameFilter) {
-        return getRequestBuilder().param(NAME_FILTER_PARAM_KEY, nameFilter);
+        return getRequestBuilder().param(ApiConstants.GET_NAMES_FILTER_PARAMETER_KEY, nameFilter);
     }
 
-    private void assertSuccessCall(MockHttpServletRequestBuilder requestBuilder, String nameFilter) throws Exception {
+    private void assertSuccessCall(MockHttpServletRequestBuilder requestBuilder) throws Exception {
         GetNameResult expectedNames = TestFixture.getNamesResult();
 
         Mockito

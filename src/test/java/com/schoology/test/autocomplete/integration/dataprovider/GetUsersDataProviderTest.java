@@ -5,7 +5,6 @@ import com.schoology.test.autocomplete.core.gateway.GetUsersGateway;
 import com.schoology.test.autocomplete.dataprovider.GetUsersDataProvider;
 import com.schoology.test.autocomplete.dataprovider.repository.UserRepository;
 import com.schoology.test.autocomplete.helper.TestConstants;
-import org.assertj.core.api.Assertions;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
